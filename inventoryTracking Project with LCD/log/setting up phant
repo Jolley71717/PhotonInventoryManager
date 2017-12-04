@@ -1,0 +1,35 @@
+Example
+
+Enter a description> Messaging eachother
+Enter fields (comma separated)> Action,Floor,MotionDetected,Time
+Enter tags (comma separated)> one,two,three
+
+//curl -X POST 'http://[ipaddress]:8080/input/[publicKey]' \
+//	-H 'Phant-Private-Key: [privateKey]' \
+//parameters	-d '[field]=[value%20Enter]'
+//OUTPUT
+//	curl -X GET 'http://[ipaddress]:8080/output/[publicKey].csv'
+
+Stream created!
+PUBLIC KEY: qe0ZJmJQpZtlBKqWdyEJHLJdrM3
+PRIVATE KEY:  nLbw5P5VjwF7G8yLDenATMgLpVZ
+DELETE KEY:  xQ2JgLgm0JfZLlRNOvr3fEgB1yq
+
+INPUT
+
+	curl -X POST 'http://localhost:8080/input/qe0ZJmJQpZtlBKqWdyEJHLJdrM3' \
+	-H 'Phant-Private-Key: nLbw5P5VjwF7G8yLDenATMgLpVZ' \
+	-d 'Action=Watching%20TV&Floor=Basement&MotionDetected=True&Time=2239'
+
+OUTPUT
+	curl -X GET 'http://localhost:8080/output/qe0ZJmJQpZtlBKqWdyEJHLJdrM3.csv'
+
+
+Inventory item on my wifi
+telnet 192.168.1.107 8081
+
+curl -X POST 'http://192.168.1.107:8080/input/OA6BXgb8XmFxJGpq0p3XHrxQA2aL' \
+	-H 'Phant-Private-Key: M5lERd2mRGs2PL0qX06guePjB6D3' \
+	-d 'buttonPressed=NO'
+
+curl -X GET 'http://192.168.1.107:8080/output/OA6BXgb8XmFxJGpq0p3XHrxQA2aL.csv'
