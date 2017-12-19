@@ -21,9 +21,7 @@ http_request_t request;
 http_response_t response;
 
 http_header_t headers[] = {
-// { "Content-Type", "multipart/form-data" },
     { "Accept" , "*/*"},
-// { "Phant-Private-Key", "M5lERd2mRGs2PL0qX06guePjB6D3"},
   { NULL, NULL } // NOTE: Always terminate headers will NULL
 };
 
@@ -49,11 +47,14 @@ void setup() {
     digitalWrite(D6,HIGH);
 }
 
-void postRequest() {
+void getRequest() {
 
   String added_bit="&buttonPressed=YES";
+  // path includes the url to input data into the phant server
+  // the path is /input/[public-phant-key]?private_key=[private-phant-key]
   request.path = "/input/OA6BXgb8XmFxJGpq0p3XHrxQA2aL?private_key=M5lERd2mRGs2PL0qX06guePjB6D3"+ added_bit;
 
+  //executes the request
    http.get(request, response, headers);
  }
 
@@ -94,7 +95,7 @@ void loop() {
       digitalWrite(D6, LOW);
 
 
-      postRequest();
+      getRequest();
     }
     delay(100);
   }
