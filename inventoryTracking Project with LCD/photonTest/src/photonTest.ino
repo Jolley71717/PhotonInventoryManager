@@ -1,3 +1,12 @@
+// This #include statement was automatically added by the Particle IDE.
+#include <SparkJson.h>
+
+// This #include statement was automatically added by the Particle IDE.
+#include <HttpClient.h>
+
+// This #include statement was automatically added by the Particle IDE.
+#include <Grove_LCD_RGB_Backlight.h>
+
 
 #include <Wire.h>
 #include "application.h"
@@ -41,7 +50,7 @@ void setup() {
     lcd.begin(16, 2);
     lcd.setRGB(colorR, colorG, colorB);
     // Print a message to the LCD.
-    lcd.print("hello, world!");
+    //lcd.print("hello, world!");
 
     delay(1000);
 
@@ -49,12 +58,32 @@ void setup() {
     digitalWrite(D6,HIGH);
 }
 
-void postRequest() {
 
-  String added_bit="&buttonPressed=YES";
-  request.path = "/input/OA6BXgb8XmFxJGpq0p3XHrxQA2aL?private_key=M5lERd2mRGs2PL0qX06guePjB6D3"+ added_bit;
+// pushes the inventory changes for the selected item
+// Will need to look something like void postPhantPushRequest(Integer ItemID, String Description, Integer Quantity)
+void postPhantPushRequest(int itemID, String description, int quantity) {
+
+  //String added_bit="&buttonPressed=YES";
+  String itemIDString = "&ItemID=" + itemID; //may need to do a ".toString"
+  String descriptionString = "&Description=" + description;
+  String quantityString = "&Quantity=" + quantity;
+  request.path = "/input/[public_key]?private_key=[private_key]"+ itemIDString + descriptionString + quantityString;
 
    http.get(request, response, headers);
+   lcd.setCursor(0, 1);
+   lcd.print(response.body);// had errors in the past with converting body to string
+ }
+ 
+ //retrieves json from the phant server to populate the inventory options
+ void postPhantPullRequest() {
+
+  request.path = "/output/[public_key].json";
+
+   http.get(request, response, headers);
+   
+   //response.status to get the code
+    //check for the code that means that everything was good
+   //response.body to get the json
  }
 
 void addButtonPress(){
@@ -94,7 +123,7 @@ void loop() {
       digitalWrite(D6, LOW);
 
 
-      postRequest();
+      postPhantPushRequest();
     }
     delay(100);
   }
