@@ -1,13 +1,14 @@
 # photonTest
 
-A Particle project named photonTest
+This Project Contains the c++ code to manage an array of inventory items and to connect with a raspberry pi running Phant. For full project details, see my [Fire Inventory Project](https://www.hackster.io/Jolley71717/fire-equipment-management-893de2) on Hackster.io
 
-## Welcome to your project!
+
+## Welcome to your PhotonTest!
 
 Every new Particle project is composed of 3 important elements that you'll see have been created in your project directory for photonTest.
 
 #### ```/src``` folder:  
-This is the source folder that contains the firmware files for your project. It should *not* be renamed. 
+This is the source folder that contains the firmware files for your project. It should *not* be renamed.
 Anything that is in this folder when you compile your project will be sent to our compile service and compiled into a firmware binary for the Particle device that you have targeted.
 
 If your application contains multiple files, they should all be included in the `src` folder. If your firmware depends on Particle libraries, those dependencies are specified in the `project.properties` file referenced below.

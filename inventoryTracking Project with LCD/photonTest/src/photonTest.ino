@@ -7,11 +7,8 @@
 // This #include statement was automatically added by the Particle IDE.
 #include <Grove_LCD_RGB_Backlight.h>
 
-
 #include <Wire.h>
 #include "application.h"
-#include "HttpClient.h"
-#include "Grove_LCD_RGB_Backlight.h"
 
 //for the LCD
 rgb_lcd lcd;
@@ -59,7 +56,7 @@ String Items[3][3] = {
 
 void setup() {
     // Sets up the IP address for the get request later
-    request.ip= IPAddress(192,168,1,141);
+    request.ip= IPAddress(192,168,4,2);
     // request.ip= IPAddress(192,168,1,107);
     request.port = 8080;
 
